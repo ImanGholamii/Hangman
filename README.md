@@ -23,7 +23,7 @@ Welcome to Hangman! This is a classic word guessing game where you try to guess 
 ## 🛠️ Usage
 ```bash
 python hangman.py
-
+```
 🎨 Customization
 Feel free to customize the game by modifying the list of words, adjusting the number of attempts, or adding new features.
 
