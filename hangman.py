@@ -1,10 +1,11 @@
-from Day_007_hangman_words import word_list, HANGMANPICS, logo
+from hangman_words import word_list, HANGMANPICS, logo
 from random import choice
 
 print(logo)
 print(HANGMANPICS[0])
 
-random_word = choice(word_list)
+# random_word = choice(word_list)
+random_word = 'abaaas'
 blank_numbers = len(random_word)
 word = ''
 guess_remains = [4, 6, 8] # To select the difficulty by the user
@@ -26,7 +27,47 @@ else:
 
 for item in range(blank_numbers):
         word += '_ '
-print(word)        
+print(word)
+print(type(word))        
+print(random_word)
+w = 'a'
+# if w in random_word:
+#     print(f"there is {w}")
+#     index = random_word.index(w)
+#     print(index)
+#     word = word.split(' ')
+#     word[int(index)] = w
+#     print(word[0])
+# else:
+#     print(f"there is not {w}")
+    
+word = word.split(' ')
+result = ''
+for i in range(len(random_word)):
+    if random_word[i] == w:
+        word[i] = random_word[i]
+        result += word[i]
 
-while guess_remains >= 0:
-   pass 
+print(word)        
+print(result)        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+# while guess_remains >= 0:
+#     try:
+#        user_guess = str(input("Enter a word: "))
+#     except TypeError:
+#        print("Wrong Input!\nYou have to enter just words...") 
+    
+#     for w in random_word:
+#         index = []
+#         index.append(random_word[w])
+#         print(f"index: \n\
+#             {id}")
+              
