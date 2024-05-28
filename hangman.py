@@ -4,10 +4,14 @@ from random import choice
 print(logo)
 print(HANGMANPICS[0])
 
-# random_word = choice(word_list)
-random_word = 'abaaas'
+random_word = choice(word_list)
 blank_numbers = len(random_word)
-word = ''
+word = []
+results = ''
+
+for number in range(blank_numbers):
+        word += '_'
+        
 guess_remains = [4, 6, 8] # To select the difficulty by the user
 
 difficulty_level = input("Select the difficulty level:\n1)easy(8 guesses)\n2)normal(6 guesses)\n3)hard(4 guesses)\n>>> ")
@@ -25,49 +29,47 @@ else:
     print("⚠️  Invalid Input.\n🔄 Restart the game and enter '1' or 'easy' and so on...")
 
 
-for item in range(blank_numbers):
-        word += '_ '
-print(word)
-print(type(word))        
-print(random_word)
-w = 'a'
-# if w in random_word:
-#     print(f"there is {w}")
-#     index = random_word.index(w)
-#     print(index)
-#     word = word.split(' ')
-#     word[int(index)] = w
-#     print(word[0])
-# else:
-#     print(f"there is not {w}")
-    
-word = word.split(' ')
-result = ''
-for i in range(len(random_word)):
-    if random_word[i] == w:
-        word[i] = random_word[i]
-        result += word[i]
-
-print(word)        
-print(result)        
         
-    
-    
-    
-    
-    
-    
-    
-    
-# while guess_remains >= 0:
-#     try:
-#        user_guess = str(input("Enter a word: "))
-#     except TypeError:
-#        print("Wrong Input!\nYou have to enter just words...") 
-    
-#     for w in random_word:
-#         index = []
-#         index.append(random_word[w])
-#         print(f"index: \n\
-#             {id}")
-              
+print(word)               
+p = 1    
+while guess_remains > 0:
+    try:
+       user_guess = input("Enter a word: ")
+       if not user_guess.isalpha():
+           raise ValueError("You have to enter just words...")
+       
+    except ValueError as e:
+       print(f"Wrong Input!\n{e}")
+       if p >= len(HANGMANPICS):
+           print(HANGMANPICS[6])
+       else:
+           print(HANGMANPICS[p]) 
+       p += 1 
+    else:
+        print(f"Hint: it is a {len(random_word)} lenght word")
+        print(f"You entered {user_guess} ")
+        
+        if user_guess in random_word:
+            for i in range(len(random_word)):
+                
+                if random_word[i] == user_guess:
+                    word[i] = random_word[i]
+                    results += word[i]
+                    print(word)
+            
+        else:
+            if p >= len(HANGMANPICS):
+                print(HANGMANPICS[6])
+            else:
+                print(HANGMANPICS[p]) 
+            p += 1 
+                  
+                  
+    guess_remains -= 1
+    if guess_remains == 0 and results != random_word:
+        print(f"{HANGMANPICS[6]}\nHe is dead")
+        print(f"The word was {random_word}")
+    elif guess_remains == 0 and results == random_word:
+        print("You won.")    
+        
+print(results)    
