@@ -4,13 +4,11 @@ from random import choice
 print(logo)
 print(HANGMANPICS[0])
 
-random_word = choice(word_list)
+# random_word = choice(word_list)
+random_word = 'abbas'
 blank_numbers = len(random_word)
-word = []
+word = ['_' for _ in range(blank_numbers)]
 results = ''
-
-for number in range(blank_numbers):
-        word += '_'
         
 guess_remains = [4, 6, 8] # To select the difficulty by the user
 
@@ -28,9 +26,8 @@ elif difficulty_level == '3' or difficulty_level.lower() == 'hard':
 else:
     print("⚠️  Invalid Input.\n🔄 Restart the game and enter '1' or 'easy' and so on...")
 
-
-        
-print(word)               
+print(word) 
+              
 p = 1    
 while guess_remains > 0:
     try:
@@ -51,25 +48,26 @@ while guess_remains > 0:
         
         if user_guess in random_word:
             for i in range(len(random_word)):
-                
                 if random_word[i] == user_guess:
                     word[i] = random_word[i]
-                    results += word[i]
                     print(word)
-            
+                results = ''.join(word)
+                
         else:
             if p >= len(HANGMANPICS):
                 print(HANGMANPICS[6])
             else:
                 print(HANGMANPICS[p]) 
-            p += 1 
-                  
+            p += 1                 
                   
     guess_remains -= 1
-    if guess_remains == 0 and results != random_word:
-        print(f"{HANGMANPICS[6]}\nHe is dead")
+    print(f'guess remains: {guess_remains}')
+    
+    if results == random_word:
+        print("You won.")
+        break    
+    elif guess_remains == 0 and results != random_word:
+        print(f"{HANGMANPICS[-1]}\nHe is dead")
         print(f"The word was {random_word}")
-    elif guess_remains == 0 and results == random_word:
-        print("You won.")    
         
-print(results)    
+print(f"You have entered: {results}")    
