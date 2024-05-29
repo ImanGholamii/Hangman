@@ -1,11 +1,11 @@
 from hangman_words import word_list, HANGMANPICS, logo
 from random import choice
+from replit import clear
 
 print(logo)
 print(HANGMANPICS[0])
 
-# random_word = choice(word_list)
-random_word = 'abbas'
+random_word = choice(word_list)
 blank_numbers = len(random_word)
 word = ['_' for _ in range(blank_numbers)]
 results = ''
